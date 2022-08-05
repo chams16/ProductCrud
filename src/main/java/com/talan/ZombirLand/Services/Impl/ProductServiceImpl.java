@@ -26,8 +26,10 @@ public class ProductServiceImpl implements ProductService {
         productRepository.delete(productRepository.findById(id).get());
     }
 
-    public Product updateProduct(Product product){
-        Product productToUpdate = productRepository.findById(product.getId()).get();
-        return productRepository.saveAndFlush(product);
+    public Product updateProduct(Product product, Long id){
+        Product productToUpdate = productRepository.findById(id).get();
+        productToUpdate.setName(product.getName());
+        productToUpdate.setPrice(product.getPrice());
+        return productToUpdate;
     }
 }
